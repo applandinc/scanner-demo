@@ -43,7 +43,7 @@ jobs:
         - APPMAP_DIR=target/appmap
       jdk: openjdk11
       script:
-        - ./mnvw test
+        - ./mvnw test
 
 after_success:
   - cd "$root_dir"
