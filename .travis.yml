@@ -1,0 +1,44 @@
+os: linux
+dist: xenial
+language: node_js
+node_js: 13
+before_install:
+  - sudo apt-get update
+  - curl -L https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz | tar xz
+  - echo $(pwd)
+  - ls -al
+  - nvm install 12.18.1
+
+before_script:
+  - root_dir=$(pwd)
+  - echo "$root_dir"
+  - cd $PROJECT_NAME
+
+jobs:
+  include:
+    - name: Rails Sample App
+      language: ruby
+      env:
+        - PROJECT_NAME=sample_app_6th_ed
+      rvm: 2.7.3
+      cache:
+        bundler: true
+        yarn: true
+        directories:
+         - /home/travis/.rvm/
+
+      script:
+        - sudo apt-get -y install graphviz
+        - gem install -N bundler:1.17.3
+        - yarn
+        - bundle
+        - bundle exec rake db:migrate
+        - env APPMAP=true bundle exec rake test
+        - cd "$root_dir"
+        - ls
+        - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml" --appmap-dir "$PROJECT_NAME/tmp/appmap"
+        - ./gdrive help
+        - ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
+
+after_success:
+  - echo done!
