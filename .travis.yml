@@ -16,7 +16,7 @@ deploy:
   bucket: appland-ci-artifacts
   skip_cleanup: "true"
   on:
-    branch: feat/rails-sample-app
+    branch: main
 
 before_script:
   - root_dir=$(pwd)
