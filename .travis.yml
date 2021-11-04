@@ -5,7 +5,7 @@ node_js: 13
 before_install:
   - sudo apt-get update
   - curl -L https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz | tar xz
-  - chmod a+x ./gdrive
+  - sudo mv gdrive /usr/local/bin/
   - echo $(pwd)
   - ls -al
   - nvm install 12.18.1
@@ -48,6 +48,7 @@ jobs:
 after_success:
   - cd "$root_dir"
   - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml" --appmap-dir "$PROJECT_NAME"/"$APPMAP_DIR" || true
-  - ./gdrive help
-  - ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
+  - ls
+  - gdrive help
+  - gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
   - echo done!
