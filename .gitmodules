@@ -1,3 +1,6 @@
 [submodule "sample_app_6th_ed"]
 	path = sample_app_6th_ed
 	url = https://github.com/land-of-apps/sample_app_6th_ed.git
+[submodule "spring-petclinic"]
+	path = spring-petclinic
+	url = https://github.com/land-of-apps/spring-petclinic

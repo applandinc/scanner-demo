@@ -5,13 +5,13 @@ node_js: 13
 before_install:
   - sudo apt-get update
   - curl -L https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz | tar xz
+  - chmod a+x ./gdrive
   - echo $(pwd)
   - ls -al
   - nvm install 12.18.1
 
 before_script:
   - root_dir=$(pwd)
-  - echo "$root_dir"
   - cd $PROJECT_NAME
 
 jobs:
@@ -20,6 +20,7 @@ jobs:
       language: ruby
       env:
         - PROJECT_NAME=sample_app_6th_ed
+        - APPMAP_DIR=tmp/appmap
       rvm: 2.7.3
       cache:
         bundler: true
@@ -34,11 +35,19 @@ jobs:
         - bundle
         - bundle exec rake db:migrate
         - env APPMAP=true bundle exec rake test
-        - cd "$root_dir"
-        - ls
-        - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml" --appmap-dir "$PROJECT_NAME/tmp/appmap"
-        - ./gdrive help
-        - ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
+
+    - name: Spring Pet Clinic
+      language: java
+      env:
+        - PROJECT_NAME=spring-petclinic
+        - APPMAP_DIR=target/appmap
+      jdk: openjdk11
+      script:
+        - ./mnvw test
 
 after_success:
+  - cd "$root_dir"
+  - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml" --appmap-dir "$PROJECT_NAME"/"$APPMAP_DIR" || true
+  - ./gdrive help
+  - ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
   - echo done!
