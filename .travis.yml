@@ -4,11 +4,17 @@ language: node_js
 node_js: 13
 before_install:
   - sudo apt-get update
-  - curl -L https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz | tar xz
-  - sudo mv gdrive /usr/local/bin/
   - echo $(pwd)
   - ls -al
   - nvm install 12.18.1
+
+deploy:
+  provider: gcs
+  access_key_id: GOOG1EILSFLSNMSIV5A75WMMQXC6WTLQUGF53NWSYHBDN54SHMCPENSXVRY3A
+  secret_access_key:
+    secure: EpQwN/UMLfuanFFl/0ctT5l7GOSj8rMyFr1yCzzEA/sfUpBl58F47hqxFMei1Swh40KunQ/gBfAWIXUly0T0gX3TlP+JvV+9Tn4tESqnmXPqha+UJRxtBftzi9IXeSawgLe+4VjB6UUbPh0wAszZ/N1Hu02v1ZVExPZ6oHufijyis89NMWf/G/rtQ++TfjzVM06lOPDL2UGm++51TDL3PF0LKCT64NT3Wz8KXE6rNJet7rMsmXxunwmFSbTH5l6ZeDgzxYX7onUMHo/nKILqx4R93ugRAya4nTKVNhuX65HAO0nBXGseK7ziHdVnAKpJI9cefMJaGW5a5o1O+8zZUK3sUrIv7l9Kg7/7E5FvHIjpfCDfzGy3JzlnZz4beRr6ItyeLCtqKAcgRwPfOP7Rd1teI58oHrogGIITRxI+sSJ3HpguasEACYpBm03WxHRv5MzkYDmi4ywmfOloHtunl0f4Nj3w6ixGT6LW7c5M5bLH+UgsC1TRNUq6qlbgK0gLK0v9aQflniHIn0NeDrATRHsdddpESjs3qi63PBa3Ev+bbbtFn5AaXG5iMlG1LCAxZIprsrZf03SDVW25i++QqrT76W7RNjzNQVJpSnKNztVgIOdwJskoa5VagC0LB+1akVQlsPM+Uw5RJeyAcL1SfB4UDwoYtner9zUaq32scO4=
+  bucket: appland-ci-artifacts
+  skip_cleanup: "true"
 
 before_script:
   - root_dir=$(pwd)
@@ -26,8 +32,7 @@ jobs:
         bundler: true
         yarn: true
         directories:
-         - /home/travis/.rvm/
-
+          - "/home/travis/.rvm/"
       script:
         - sudo apt-get -y install graphviz
         - gem install -N bundler:1.17.3
@@ -35,7 +40,6 @@ jobs:
         - bundle
         - bundle exec rake db:migrate
         - env APPMAP=true bundle exec rake test
-
     - name: Spring Pet Clinic
       language: java
       env:
@@ -43,12 +47,9 @@ jobs:
         - APPMAP_DIR=target/appmap
       jdk: openjdk11
       script:
-        - ./mvnw test
+        - "./mvnw test"
 
 after_success:
   - cd "$root_dir"
-  - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml" --appmap-dir "$PROJECT_NAME"/"$APPMAP_DIR" || true
-  - ls
-  - gdrive help
-  - gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" list --order "name desc" -m 1 --no-header --name-width 0
-  - echo done!
+  - npx --userconfig .npmrc @applandinc/scanner --config "config/scanner/$PROJECT_NAME.yml"
+    --appmap-dir "$PROJECT_NAME"/"$APPMAP_DIR" || true
