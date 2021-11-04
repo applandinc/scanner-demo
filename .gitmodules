@@ -1,0 +1,3 @@
+[submodule "sample_app_6th_ed"]
+	path = sample_app_6th_ed
+	url = git@github.com:land-of-apps/sample_app_6th_ed
