@@ -20,6 +20,8 @@ jobs:
       matrix:
         ruby-version: ['2.7']
         node-version: ['12.x']
+    env:
+      GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
 
     defaults:
       run:
@@ -32,22 +34,19 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: npm
-        cache-dependency-path: sample_app_6th_ed/package-lock.json
-      env:
-        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
+#        cache: yarn
+#        cache-dependency-path: sample_app_6th_ed/yarn.lock
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-        working-directory: sample_app_6th_ed
+        bundler: 1.7.3
+#        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+#        working-directory: sample_app_6th_ed
+    - name: bundle
+      run: bundle --without production
     - name: Install graphviz
       run: sudo apt-get update && sudo apt-get install -y graphviz
     - name: Setup DB
-      run: bundle exec rails db:migrate
-    - name: Webpack
-      run: bundle exec ./bin/webpack
-      env:
-        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
+      run: ./bin/rails db:migrate
     - name: Run tests and generate AppMaps
-      run: env APPMAP=true DISABLE_SPRING=true bundle exec rails test
+      run: env APPMAP=true DISABLE_SPRING=true ./bin/rails test
