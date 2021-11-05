@@ -29,26 +29,21 @@ jobs:
       with:
         lfs: true
         submodules: true
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+        cache: npm
+        cache-dependency-path: sample_app_6th_ed/package-lock.json
+      env:
+        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
+    - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Install yarn
-      run: npm install yarn
-      env:
-        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
-    - name: Install Node.js dependencies
-      run: yarn
-      env:
-        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
-    - name: Install bundler
-      run: gem install -N bundler:1.7.3
+        working-directory: sample_app_6th_ed
     - name: Setup DB
       run: bundle exec rake db:migrate
+    - name: Webpack
+      run: ./bin/webpack
     - name: Run tests and generate AppMaps
       run: env APPMAP=true bundle exec rake
