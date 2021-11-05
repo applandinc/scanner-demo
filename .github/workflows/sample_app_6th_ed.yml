@@ -26,6 +26,9 @@ jobs:
         working-directory: sample_app_6th_ed
     steps:
     - uses: actions/checkout@v2
+      with:
+        lfs: true
+        submodules: true
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -37,9 +40,15 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Install yarn
       run: npm install yarn
+      env:
+        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
     - name: Install Node.js dependencies
       run: yarn
+      env:
+        GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
+    - name: Install bundler
+      run: gem install -N bundler:1.7.3
     - name: Setup DB
       run: bundle exec rake db:migrate
-    - name: Run tests
-      run: bundle exec rake
+    - name: Run tests and generate AppMaps
+      run: env APPMAP=true bundle exec rake
