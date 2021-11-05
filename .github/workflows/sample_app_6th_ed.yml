@@ -39,7 +39,7 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler: 1.7.3
+        bundler: 2.2.30
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
         working-directory: sample_app_6th_ed
     - name: Install graphviz
