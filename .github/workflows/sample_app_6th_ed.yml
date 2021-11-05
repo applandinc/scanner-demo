@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.7']
+        ruby-version: ['2.7.3']
         node-version: ['12.x']
     env:
       GH_NPM_AUTH_TOKEN: ${{ secrets.GH_NPM_AUTH_TOKEN }}
