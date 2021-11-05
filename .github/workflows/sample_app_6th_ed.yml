@@ -47,5 +47,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y graphviz
     - name: Setup DB
       run: bundle exec rake db:migrate
+    - name: Webpacker
+      run: ./bin/webpack
     - name: Run tests and generate AppMaps
       run: env APPMAP=true bundle exec rake test
