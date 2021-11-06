@@ -15,6 +15,8 @@ deploy:
     secure: EpQwN/UMLfuanFFl/0ctT5l7GOSj8rMyFr1yCzzEA/sfUpBl58F47hqxFMei1Swh40KunQ/gBfAWIXUly0T0gX3TlP+JvV+9Tn4tESqnmXPqha+UJRxtBftzi9IXeSawgLe+4VjB6UUbPh0wAszZ/N1Hu02v1ZVExPZ6oHufijyis89NMWf/G/rtQ++TfjzVM06lOPDL2UGm++51TDL3PF0LKCT64NT3Wz8KXE6rNJet7rMsmXxunwmFSbTH5l6ZeDgzxYX7onUMHo/nKILqx4R93ugRAya4nTKVNhuX65HAO0nBXGseK7ziHdVnAKpJI9cefMJaGW5a5o1O+8zZUK3sUrIv7l9Kg7/7E5FvHIjpfCDfzGy3JzlnZz4beRr6ItyeLCtqKAcgRwPfOP7Rd1teI58oHrogGIITRxI+sSJ3HpguasEACYpBm03WxHRv5MzkYDmi4ywmfOloHtunl0f4Nj3w6ixGT6LW7c5M5bLH+UgsC1TRNUq6qlbgK0gLK0v9aQflniHIn0NeDrATRHsdddpESjs3qi63PBa3Ev+bbbtFn5AaXG5iMlG1LCAxZIprsrZf03SDVW25i++QqrT76W7RNjzNQVJpSnKNztVgIOdwJskoa5VagC0LB+1akVQlsPM+Uw5RJeyAcL1SfB4UDwoYtner9zUaq32scO4=
   bucket: appland-ci-artifacts
   skip_cleanup: "true"
+  upload_dir: scanner-demo/main
+  edge: true
   on:
     branch: main
 
@@ -29,6 +31,7 @@ jobs:
       env:
         - PROJECT_NAME=sample_app_6th_ed
         - APPMAP_DIR=tmp/appmap
+        - GCS_UPLOAD_DIR=tmp/appmap
       rvm: 2.7.3
       cache:
         bundler: true
@@ -47,6 +50,7 @@ jobs:
       env:
         - PROJECT_NAME=spring-petclinic
         - APPMAP_DIR=target/appmap
+        - GCS_UPLOAD_DIR=target/appmap
       cache:
         directories:
           - $HOME/.m2
