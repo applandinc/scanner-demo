@@ -7,3 +7,6 @@
 [submodule "chipy.org"]
 	path = chipy.org
 	url = https://github.com/land-of-apps/chipy.org.git
+[submodule "Misago"]
+	path = Misago
+	url = https://github.com/land-of-apps/Misago.git
