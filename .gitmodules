@@ -4,3 +4,6 @@
 [submodule "spring-petclinic"]
 	path = spring-petclinic
 	url = https://github.com/land-of-apps/spring-petclinic
+[submodule "chipy.org"]
+	path = chipy.org
+	url = https://github.com/land-of-apps/chipy.org.git

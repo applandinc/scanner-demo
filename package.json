@@ -2,9 +2,11 @@
   "name": "scanner-demo",
   "private": true,
   "dependencies": {
+    "@appland/appmap": "^3.13.0",
     "@applandinc/scanner": "^1.18.0"
   },
   "scripts": {
+    "appmap-install": "node ./node_modules/@appland/appmap/built/src/cli.js install",
     "scanner": "node ./node_modules/@applandinc/scanner/built/cli.js"
   },
   "version": "1.0.0"
