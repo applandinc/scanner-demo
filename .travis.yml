@@ -2,16 +2,16 @@ os: linux
 dist: xenial
 language: ruby
 rvm: 2.7.3
+
 before_install:
   - sudo apt-get update
   - nvm install 12.18.1
   - yarn install
-cache:
-  - yarn
-
-before_script:
   - root_dir=$(pwd)
   - cd $PROJECT_NAME
+
+cache:
+  - yarn
 
 deploy:
   provider: gcs
@@ -47,11 +47,9 @@ jobs:
         - bundle exec rake db:migrate
         - env DISABLE_SPRING=true APPMAP=true bundle exec rake test
     - name: ChiPy.org
-      language: python
       env:
         - PROJECT_NAME=chipy.org
         - APPMAP_DIR=tmp/appmap
-      python: 3.9
       script:
         - make setup_env
         - make up
