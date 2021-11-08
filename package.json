@@ -1,0 +1,11 @@
+{
+  "name": "scanner-demo",
+  "private": true,
+  "dependencies": {
+    "@applandinc/scanner": "^1.18.0"
+  },
+  "scripts": {
+    "scanner": "node ./node_modules/@applandinc/scanner/built/cli.js"
+  },
+  "version": "1.0.0"
+}
