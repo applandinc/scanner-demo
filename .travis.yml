@@ -54,7 +54,7 @@ jobs:
         - make setup_env
         - make up
         - make migrate
-        - APPMAP=true make test
+        - make test
     - name: Spring Pet Clinic
       language: java
       env:
@@ -69,5 +69,6 @@ jobs:
 
 after_success:
   - cd "$root_dir"
+  - sudo chmod -R a+r $PROJECT_NAME/$APPMAP_DIR
   - yarn scanner -- --config config/scanner/$PROJECT_NAME.yml --appmap-dir $PROJECT_NAME/$APPMAP_DIR --report-format json --report-file $PROJECT_NAME.scanner.json || true
   - ./build_archive
