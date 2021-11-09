@@ -5,6 +5,10 @@ rvm: 2.7.3
 
 before_install:
   - sudo apt-get update
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64 > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
   - nvm install 12.18.1
   - yarn install
   - root_dir=$(pwd)
