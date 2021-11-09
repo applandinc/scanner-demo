@@ -58,7 +58,7 @@ jobs:
         - make setup_env
         - make up
         - make migrate
-        - env APPMAP=true make test
+        - make appmap
     - name: Misago
       env:
         - PROJECT_NAME=Misago
