@@ -9,7 +9,7 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64 > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - nvm install 12.18.1
+  - nvm install 14.18.1
   - yarn install
   - root_dir=$(pwd)
   - cd $PROJECT_NAME
