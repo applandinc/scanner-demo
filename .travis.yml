@@ -49,7 +49,7 @@ jobs:
         - bundle --path vendor/bundle
       script:
         - bundle exec rake db:migrate
-        - env DISABLE_SPRING=true APPMAP=true bundle exec rake test
+        - env DISABLE_SPRING=true APPMAP_BUILTIN_HOOKS_PATH=appmap/builtin_hooks APPMAP=true bundle exec rake test
     - name: ChiPy.org
       env:
         - PROJECT_NAME=chipy.org
