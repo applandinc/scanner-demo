@@ -37,6 +37,9 @@ jobs:
       env:
         - PROJECT_NAME=sample_app_6th_ed
         - APPMAP_DIR=tmp/appmap
+        - DISABLE_SPRING=true
+        - APPMAP_GEM_HOOKS_PATH=appmap/gem_hooks
+        - APPMAP_BUILTIN_HOOKS_PATH=appmap/builtin_hooks
       cache:
         directories:
           - /home/travis/.rvm/
@@ -49,7 +52,7 @@ jobs:
         - bundle --path vendor/bundle
       script:
         - bundle exec rake db:migrate
-        - env DISABLE_SPRING=true APPMAP_BUILTIN_HOOKS_PATH=appmap/builtin_hooks APPMAP=true bundle exec rake test
+        - env APPMAP=true bundle exec rake test
     - name: ChiPy.org
       env:
         - PROJECT_NAME=chipy.org
