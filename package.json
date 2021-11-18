@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@appland/appmap": "~3",
-    "@applandinc/scanner": "~1"
+    "@applandinc/scanner": "^1.22.2"
   },
   "scripts": {
     "appmap-install": "node ./node_modules/@appland/appmap/built/src/cli.js install",
