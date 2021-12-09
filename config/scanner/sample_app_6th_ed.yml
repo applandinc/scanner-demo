@@ -1,1 +1,29 @@
-../../sample_app_6th_ed/appland-scanner.yml
+checks:
+  - rule: authzBeforeAuthn
+  - rule: http500
+  - rule: illegalPackageDependency
+    properties:
+      callerPackages:
+        - equal: actionpack
+      calleePackage:
+        equal: app/controllers
+  - rule: insecureCompare
+  - rule: missingAuthentication
+  - rule: missingContentType
+  - rule: nPlusOneQuery
+  - rule: secretInLog
+  - rule: slowFunctionCall
+    properties:
+      timeAllowed: 0.2
+      functions:
+        - match: Controller#create$
+  - rule: slowHttpServerRequest
+    properties:
+      timeAllowed: 0.5
+  - rule: slowQuery
+    properties:
+      timeAllowed: 0.05
+  - rule: tooManyJoins
+  - rule: tooManyUpdates
+  - rule: unbatchedMaterializedQuery
+  - rule: updateInGetRequest

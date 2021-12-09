@@ -1,12 +1,12 @@
-scanners:
-  - id: http500
-  - id: missingContentType
-  - id: nPlusOneQuery
-  - id: slowHttpServerRequest
+checks:
+  - rule: http500
+  - rule: missingContentType
+  - rule: nPlusOneQuery
+  - rule: slowHttpServerRequest
     properties:
       timeAllowed: 0.5
-  - id: slowQuery
+  - rule: slowQuery
     properties:
       timeAllowed: 0.05
-  - id: tooManyUpdates
-  - id: updateInGetRequest
+  - rule: tooManyUpdates
+  - rule: updateInGetRequest
