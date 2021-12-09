@@ -5,6 +5,7 @@ rvm: 2.7.3
 
 before_install:
   - sudo apt-get update
+  - sudo apt-get -y install graphviz
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64 > docker-compose
   - chmod +x docker-compose
@@ -12,10 +13,12 @@ before_install:
   - nvm install 14.18.1
   - yarn install
   - root_dir=$(pwd)
-  - cd $PROJECT_NAME
 
 cache:
   - yarn
+
+script:
+  - ./bin/build $PROJECT_NAME
 
 deploy:
   provider: gcs
@@ -37,42 +40,19 @@ jobs:
       env:
         - PROJECT_NAME=sample_app_6th_ed
         - APPMAP_DIR=tmp/appmap
-        - DISABLE_SPRING=true
-        - APPMAP_GEM_HOOKS_PATH=appmap/gem_hooks
-        - APPMAP_BUILTIN_HOOKS_PATH=appmap/builtin_hooks
       cache:
         directories:
           - /home/travis/.rvm/
           - sample_app_6th_ed/vendor/bundle
       rvm: 2.7.3
-      install:
-        - sudo apt-get -y install graphviz
-        - gem install -N bundler:1.17.3
-        - yarn
-        - bundle --path vendor/bundle
-      script:
-        - bundle exec rake db:migrate
-        - env APPMAP=true bundle exec rake test
     - name: ChiPy.org
       env:
         - PROJECT_NAME=chipy.org
         - APPMAP_DIR=tmp/appmap
-      script:
-        - make setup_env
-        - make up
-        - make migrate
-        - make appmap
     - name: Misago
       env:
         - PROJECT_NAME=Misago
         - APPMAP_DIR=tmp/appmap
-      install:
-        - docker-compose build
-        - docker-compose run --rm misago python manage.py migrate
-        # - docker-compose run --rm misago python manage.py createsuperuser --noinput --username admin --password admin --email admin@example.org
-        - docker-compose up -d && sleep 10s
-      script:
-        - docker-compose exec misago env APPMAP=true pytest --ignore=misago/faker/tests/test_create_fake_followers_command.py
     - name: Spring Pet Clinic
       language: java
       env:
@@ -82,11 +62,9 @@ jobs:
         directories:
           - $HOME/.m2
       jdk: openjdk11
-      script:
-        - "./mvnw test"
 
 after_success:
   - cd "$root_dir"
   - sudo chmod -R a+r $PROJECT_NAME/$APPMAP_DIR
   - yarn scanner -- --config config/scanner/$PROJECT_NAME.yml --appmap-dir $PROJECT_NAME/$APPMAP_DIR --report-format json --report-file $PROJECT_NAME.scanner.json || true
-  - ./build_archive
+  - ./bin/archive
