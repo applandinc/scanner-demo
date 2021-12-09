@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -ex
+
+gem install -N bundler:1.17.3
+yarn
+bundle --path vendor/bundle
+bundle exec rake db:migrate

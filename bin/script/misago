@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -ex
+
+docker-compose exec misago env APPMAP=true pytest --ignore=misago/faker/tests/test_create_fake_followers_command.py
