@@ -34,42 +34,6 @@
     call-me-maybe "^1.0.1"
     z-schema "^5.0.1"
 
-"@appland/appmap@^3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@appland/appmap/-/appmap-3.13.3.tgz#937dd4577b5c5386c9211ae667b58b8a5205188e"
-  integrity sha512-zUnoY7NwD4fg3fl31SgFI217PM4v+bakhvU0E5tW9fqzBfckxhik+ZdwdiypTVRAihPjLoy9I5KDOJVie8rSsQ==
-  dependencies:
-    "@appland/components" "1.14.2"
-    "@appland/diagrams" "1.5.0"
-    "@appland/models" "1.7.0"
-    "@sidvind/better-ajv-errors" "^0.9.1"
-    "@types/moo" "^0.5.5"
-    ajv "^8.6.3"
-    applicationinsights "^2.1.4"
-    async "^3.2.0"
-    boxen "^5.0.1"
-    chalk "^4.1.2"
-    chokidar "^3.5.1"
-    cli-progress "^3.9.0"
-    conf "^10.0.2"
-    console-table-printer "^2.9.0"
-    crypto-js "^4.0.0"
-    detect-indent "^6.1.0"
-    diff "^5.0.0"
-    fs-extra "^9.1.0"
-    glob "^7.1.6"
-    inquirer "^8.1.2"
-    js-yaml "^3.14.1"
-    jsdom "^16.6.0"
-    moo "^0.5.1"
-    open "^8.2.1"
-    ora "^5.4.1"
-    port-pid "^0.0.7"
-    ps-node "^0.1.6"
-    semver "^7.3.5"
-    w3c-xmlserializer "^2.0.0"
-    yargs "^17.0.1"
-
 "@appland/appmap@~3":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@appland/appmap/-/appmap-3.13.0.tgz#71010c68278bdb09fe94874cd83a86391f10f1c3"
@@ -143,32 +107,23 @@
     crypto-js "^4.0.0"
     sqlite-parser "^1.0.1"
 
-"@appland/models@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@appland/models/-/models-1.7.0.tgz#448fd976937f4c17cf01b075ce8c39468a491aa8"
-  integrity sha512-ZLUTVvqFExtexRpCciprnQhUKx47LLuAaOxFcBw0AxOQdfvsMCUQUqv5zqqeJPxru1eiE9P5UIOIUfyJYWVLLQ==
+"@appland/models@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@appland/models/-/models-1.8.0.tgz#e7c0101165b97c2f9bdaa590d589ef6eac613571"
+  integrity sha512-H7JDTnVqHsS/+rUZ+8u6dRGBU8maYiK7l6cLp9oSIl1AaGt+bu/JIN6oLxg2lVfDnrUR5MC0fg7OmU0qALlccg==
   dependencies:
     cross-env "^7.0.3"
     crypto-js "^4.0.0"
-    sqlite-parser "^1.0.1"
+    sqlite-parser applandinc/sqlite-parser
 
-"@appland/models@^1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@appland/models/-/models-1.7.1.tgz#3a6e7c6d5f1fb9a3d5dd5b21c7b21f0e18614baf"
-  integrity sha512-sQeOzM9fxxAokK/LyhH4xiY0+bxMN2Q6griOoAAJasoYfhJSAeJPHbLUpYhvpFqdyBY7PDhSM/osfSZxZCBOYA==
+"@applandinc/scanner@^1.29.0":
+  version "1.29.0"
+  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.29.0/66c73a4429ef5c60cd7f2e25a1fdd4fc3c8efd58072486d917654d4180ec0b79#84eda64b5f2df231f4854807028579e99ace2f44"
+  integrity sha512-IY9woK4sd7ykg9gPy7MrCiyxgXKEjbYugd6/HiqImhm95HSFrJN3Zlst0oiVFnYbK+jU6IpWwg37gCCLMpjkxw==
   dependencies:
-    cross-env "^7.0.3"
-    crypto-js "^4.0.0"
-    sqlite-parser "^1.0.1"
-
-"@applandinc/scanner@^1.22.2":
-  version "1.22.2"
-  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.22.2/c790af9b0c9297dec13363d8c66c411258343dd4389697dda3694abc4acb5bac#90a1728af951a2f651065dbc5e8b0f057931ae39"
-  integrity sha512-5Wd/cwKkRAKqGZTmSlQ1NstPyr9alHn7xFchcBEoqJYiLs0SFH4Jv0Wen2vbrcK9cC61mc1kHSRaGc29na4Wsg==
-  dependencies:
-    "@appland/appmap" "^3.13.3"
-    "@appland/models" "^1.7.1"
+    "@appland/models" "^1.8.0"
     "@types/sinon" "^10.0.2"
+    ajv "^8.8.2"
     ansi-escapes "^5.0.0"
     chalk "^4.1.2"
     js-yaml "^4.1.0"
@@ -844,6 +799,16 @@ ajv@^8.0.0, ajv@^8.6.0, ajv@^8.6.3:
   version "8.7.1"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.7.1.tgz#52be6f1736b076074798124293618f132ad07a7e"
   integrity sha512-gPpOObTO1QjbnN1sVMjJcp1TF9nggMfO4MBR5uQl6ZVTOaEPq5i4oq/6R9q2alMMPB3eg53wFv1RuJBLuxf3Hw==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    json-schema-traverse "^1.0.0"
+    require-from-string "^2.0.2"
+    uri-js "^4.2.2"
+
+ajv@^8.8.2:
+  version "8.8.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.8.2.tgz#01b4fef2007a28bf75f0b7fc009f62679de4abbb"
+  integrity sha512-x9VuX+R/jcFj1DHo/fCp99esgGDWiHENrKxaCENuCxpoMCmAt/COCGVDwA7kleEpEzJjDnvh3yGoOuLu0Dtllw==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
@@ -4630,6 +4595,10 @@ sqlite-parser@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sqlite-parser/-/sqlite-parser-1.0.1.tgz#110183f2682f04ac6c7d8ad09c44446ef976d5ec"
   integrity sha1-EQGD8mgvBKxsfYrQnEREbvl21ew=
+
+sqlite-parser@applandinc/sqlite-parser:
+  version "1.1.1"
+  resolved "https://codeload.github.com/applandinc/sqlite-parser/tar.gz/ee800f79ca123358b5485768ad6016fc8fc609cb"
 
 sshpk@^1.7.0:
   version "1.16.1"
