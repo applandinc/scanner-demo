@@ -116,10 +116,10 @@
     crypto-js "^4.0.0"
     sqlite-parser applandinc/sqlite-parser
 
-"@applandinc/scanner@^1.29.1":
-  version "1.29.1"
-  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.29.1/7656d85cdad6a9d3db0c61bc985a64917a094543691b064f0cc9835224eda94a#0247b422cc524c744c8621070f43d28f35479686"
-  integrity sha512-bqA4yWzrKMkP2YZHT4XUDnSZNP64C8kNNQLiq7jwG7S1W7UpdN5seOA7+7vgPdy+P2iQSdubml/9V1SdWyXhAg==
+"@applandinc/scanner@^1.30.0":
+  version "1.30.0"
+  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.30.0/51e73cd259e1491dbd435cefa6cad40d31540da249101074985ba3661367cfa3#1047d7781295b836d265639d475fe1831d47a8af"
+  integrity sha512-bDWneZ44r9nnYWaUxe011sXFlBlLwPECQSxuz8SfqtG2fG3vkwObM8rCwe0abSCjZ/kiBhV4QpASH4sBYW63gw==
   dependencies:
     "@appland/models" "^1.8.0"
     "@types/sinon" "^10.0.2"
