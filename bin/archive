@@ -16,7 +16,8 @@ FileUtils.rm_rf 'tmp/archive'
 FileUtils.mkdir_p 'tmp/archive'
 FileUtils.cp scanner_results_filename, 'tmp/archive/'
 
-JSON.parse(File.read(scanner_results_filename)).each do |finding|
+results = JSON.parse(File.read(scanner_results_filename))
+results["findings"].each do |finding|
   tokens = finding['appMapFile'].split('/')
   tokens.pop
   dir = [ 'tmp/archive', tokens.join('/') ].join('/')
