@@ -129,10 +129,10 @@
   resolved "https://registry.yarnpkg.com/@appland/sql-parser/-/sql-parser-1.1.1.tgz#c9028550e7a00774142460523e1686139032583e"
   integrity sha512-+Z1Y+667CBSpHuKvIzR3rfZnZ/3AGsMmqJhwYkWZy6TOlysWv7ajmbvjI54L7Edfcq9K1K10tJHuDQOH7FhLcQ==
 
-"@applandinc/scanner@^1.31.1":
-  version "1.31.1"
-  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.31.1/807da2131d345f1aecf2be62aa6c2e5b090527cf819c3937c7d226b8b63a2207#a7640c54f8e65695ef288e2acb3e557d4706eee9"
-  integrity sha512-xuSg3Tt6KAMeJx+XZodeizjLdcbTHxGLLLWFbpZboZ2GiGTzye882zEOkPJqj4uJ8AGnDS3uyq44qzfLsJKX7Q==
+"@applandinc/scanner@^1.31.2":
+  version "1.31.2"
+  resolved "https://npm.pkg.github.com/download/@applandinc/scanner/1.31.2/261035abdaa13fadc6262e03f10d2a18ac5b216f51eaf1c8e3bcdc14704c43a8#3241a719dbacf8f754b479c11381e46a7015cc4b"
+  integrity sha512-mSRfPruvTePTg7PPkHT1+6/U7aaODq1XvMKXdMIRdRb5DlGZeTsCKtcN3IYY9fKtOh8ObYSkzc53tRBh1zc+qw==
   dependencies:
     "@appland/client" "^1.1.1"
     "@appland/models" "^1.10.0"
