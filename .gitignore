@@ -1,5 +1,6 @@
 node_modules
 /archive/
 tmp
+findings.json
+.bundle
 *.scanner.json
-

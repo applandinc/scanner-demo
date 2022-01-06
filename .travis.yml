@@ -3,6 +3,11 @@ dist: xenial
 language: ruby
 rvm: 2.7.3
 
+env:
+  global:
+    - APPLAND_URL=https://app.land
+    - secure: Wwk+7VoVjtUJGuOPrdahpZoRsK41I9KyaQYKhhGO1enKTkqK3JCStKdUO/+zzZEP5fzMjWBT0LZTUv1CrFggzDYhjz3dJIRlQbzaiB2r43fhESD910+ZxqPNfT1ieA9nCk+dID8VSwujB9DNkUHB3VOByu3BGfNAYOwMk1T+2G3X/LS4L1uvWsI6WA0qZSYTgkqTG8lcMrav2FolSC20/Qcyv+QCvS5FWNLXuNKO+2iACjcoBD7F7pY55EzAcgYLSzn9psk4NdMlAVCf1iXw9PugOhxAV0W34iI5ryxgbfn7U+qINLb6xVVL8w85Oe0qypxcc76iahReKv11euTjUDsgcYWet4wWqMW+tPckhEHSYiEWft+tq4wQTbanqe4j/1Msv41QB0gGeLP4fKoidLMDwUX73xIynqxGIOWSmpuPqoK1cO2QmKm/0R2o2cAWRQO+WIAkKHSbe9BVnHT7S0lFV3TIkF1XF+XphlGumNb2PploPnsHSBate87fWQq+MB84NbJd5P4FKoSzIPRlnnWETGz3aAVyGMPiHYJK49H3zn5txN4W/4/ZC0V0BHZ6vz/s6NarUVHXA0svJASYwhM1G9JoCfeDtLt8LgvVzj8UIw73+dBZ38TRPR7c7o0xjs2kieGFxN3lamjoG84RVwkOyloB2ZiwUm51OOPKZaw=
+
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install graphviz
@@ -39,6 +44,7 @@ jobs:
       language: ruby
       env:
         - PROJECT_NAME=sample_app_6th_ed
+        - PROJECT_SLUG=sample_app_6th_ed
         - APPMAP_DIR=tmp/appmap
       cache:
         directories:
@@ -48,15 +54,18 @@ jobs:
     - name: ChiPy.org
       env:
         - PROJECT_NAME=chipy.org
+        - PROJECT_SLUG=chipy-org
         - APPMAP_DIR=tmp/appmap
     - name: Misago
       env:
         - PROJECT_NAME=Misago
+        - PROJECT_SLUG=misago
         - APPMAP_DIR=tmp/appmap
     - name: Spring Pet Clinic
       language: java
       env:
         - PROJECT_NAME=spring-petclinic
+        - PROJECT_SLUG=spring-petclinic
         - APPMAP_DIR=target/appmap
       cache:
         directories:
@@ -66,5 +75,5 @@ jobs:
 after_success:
   - cd "$root_dir"
   - sudo chmod -R a+r $PROJECT_NAME/$APPMAP_DIR
-  - yarn scanner -- --config config/scanner/$PROJECT_NAME.yml --appmap-dir $PROJECT_NAME/$APPMAP_DIR --report-format json --report-file $PROJECT_NAME.scanner.json || true
+  - yarn run scan-ci --config config/scanner/$PROJECT_NAME.yml --appmap-dir $PROJECT_NAME/$APPMAP_DIR --report-file $PROJECT_NAME.scanner.json --app scanner-demo/$PROJECT_SLUG --no-update-commit-status
   - ./bin/archive
