@@ -3,12 +3,11 @@
   "private": true,
   "dependencies": {
     "@appland/appmap": "~3",
-    "@applandinc/scanner": "^1.31.2"
+    "@appland/scanner": "^1.42.0"
   },
   "scripts": {
     "appmap-install": "node ./node_modules/@appland/appmap/built/src/cli.js install",
-    "scan": "npx @applandinc/scanner scan",
-    "scan-ci": "npx @applandinc/scanner ci"
+    "scan": "npx @appland/scanner scan"
   },
   "version": "1.0.0"
 }
