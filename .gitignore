@@ -1,6 +1,7 @@
 node_modules
 /archive/
+vendor
 tmp
-findings.json
+appland-findings.json
 .bundle
 *.scanner.json
