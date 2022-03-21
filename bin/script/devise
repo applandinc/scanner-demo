@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -ex
+
+export DISABLE_SPRING=true
+
+APPMAP=true bundle exec rake test

@@ -10,3 +10,9 @@
 [submodule "Misago"]
 	path = Misago
 	url = https://github.com/land-of-apps/Misago.git
+[submodule "projects/job-iteration"]
+	path = projects/job-iteration
+	url = https://github.com/applandinc/job-iteration.git
+[submodule "devise"]
+	path = devise
+	url = https://github.com/land-of-apps/devise

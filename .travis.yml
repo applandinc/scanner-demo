@@ -37,6 +37,16 @@ jobs:
           - /home/travis/.rvm/
           - sample_app_6th_ed/vendor/bundle
       rvm: 2.7.3
+    - name: Devise
+      language: ruby
+      env:
+        - PROJECT_NAME=devise
+        - PROJECT_SLUG=devise
+        - APPMAP_DIR=tmp/appmap
+      cache:
+        directories:
+          - /home/travis/.rvm/
+          - devise/vendor/bundle
     - name: ChiPy.org
       env:
         - PROJECT_NAME=chipy.org
