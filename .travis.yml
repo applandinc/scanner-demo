@@ -16,6 +16,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - nvm install 14.18.1
   - yarn install
+  - yarn add @appland/scanner @appland/appmap
   - root_dir=$(pwd)
 
 cache:

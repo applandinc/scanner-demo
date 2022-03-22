@@ -2,8 +2,8 @@
   "name": "scanner-demo",
   "private": true,
   "dependencies": {
-    "@appland/appmap": "^3.18.3",
-    "@appland/scanner": "^1.46.0"
+    "@appland/appmap": "^3.19.0",
+    "@appland/scanner": "^1.48.0"
   },
   "scripts": {
     "appmap-install": "npx @appland/appmap install",
