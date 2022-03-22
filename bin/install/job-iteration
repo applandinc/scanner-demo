@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -ex
+
+docker-compose build
+docker-compose up -d mysql redis && sleep 10
+docker-compose run --rm app -c "mysql -uroot -e \"CREATE DATABASE job_iteration_test\""

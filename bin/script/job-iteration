@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -ex
+
+docker-compose run -v $PWD:/work --rm app -c "bundle update appmap && env APPMAP=true bundle exec rake test"

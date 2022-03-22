@@ -13,3 +13,6 @@
 [submodule "devise"]
 	path = devise
 	url = https://github.com/land-of-apps/devise.git
+[submodule "job-iteration"]
+	path = job-iteration
+	url = https://github.com/land-of-apps/job-iteration.git
